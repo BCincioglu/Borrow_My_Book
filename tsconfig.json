@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",                        // Hedef JavaScript sürümü (ES6, ES5, vb.)
+    "module": "commonjs",                   // Modül sistemi (commonjs, es6, vb.)
+    "outDir": "./dist",                     // Derlenmiş JavaScript dosyalarının çıkış dizini
+    "rootDir": "./src",                     // TypeScript dosyalarının kök dizini
+    "strict": true,                         // Sıkı tür kontrolü
+    "esModuleInterop": true,                // ES modül uyumluluğu
+    "skipLibCheck": true,                   // Kütüphane dosyalarını kontrol etme
+    "forceConsistentCasingInFileNames": true // Dosya adlarında tutarlılık
+  },
+  "include": [
+    "src/**/*"                              // Derlenecek dosyaların dahil edileceği dizinler
+  ],
+  "exclude": [
+    "node_modules",                         // Dışarıda bırakılacak dizinler
+    "**/*.test.ts"                          // Test dosyalarını dışarda bırakma
+  ]
+}
