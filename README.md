@@ -5,7 +5,7 @@ Borrow My Book is a web application that allows users to borrow books from a sha
 
 ## Installation Steps
 
-# 1. Clone the Application
+### 1. Clone the Application
 
 First, clone the repository to your local machine using the following command:
 
@@ -13,7 +13,7 @@ First, clone the repository to your local machine using the following command:
 git clone https://github.com/BCincioglu/Borrow_My_Book.git
 ```
 
-# 2. Install Dependencies
+### 2. Install Dependencies
 
 Navigate into the project directory and install the necessary dependencies:
 
@@ -22,7 +22,7 @@ cd borrow-my-book
 npm install
 ```
 
-# 3. Database Setup
+### 3. Database Setup
 
 Create a MySQL database for the application. Connect to your MySQL server and run the following command:
 
@@ -30,11 +30,11 @@ Create a MySQL database for the application. Connect to your MySQL server and ru
 CREATE DATABASE borrow_db;
 ```
 
-# 4. Create Database Tables
+### 4. Create Database Tables
 
 Sequelize will automatically create the necessary database tables when you run the application.
 
-# 5. Run the Application
+### 5. Run the Application
 
 Finally, run the application using the following command:
 
