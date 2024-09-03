@@ -37,5 +37,3 @@ export const calculateBookAverageScores = async () => {
         console.error('Error updating book scores:', error);
     }
 };
-
-calculateBookAverageScores();
