@@ -18,7 +18,7 @@ git clone https://github.com/BCincioglu/Borrow_My_Book.git
 Navigate into the project directory and install the necessary dependencies:
 
 ```sh
-cd borrow-my-book
+cd Borrow_My_Book
 npm install
 ```
 
