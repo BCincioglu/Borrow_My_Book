@@ -1,7 +1,6 @@
-// models/borrow.ts
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/database';
-import Book from './book'; // Ensure you import Book model
+import Book from './book';
 
 interface BorrowAttributes {
     id: number;
@@ -22,8 +21,8 @@ class Borrow extends Model<BorrowAttributes, BorrowCreationAttributes> implement
     public returnedAt?: Date;
     public score?: number;
 
-    // Book ilişkisini tanımlayın
     public readonly Book?: Book;
+    public readonly averageScore?: number;
 }
 
 Borrow.init({

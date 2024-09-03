@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { borrowBook, returnBook } from '../services/borrowService';
 
-// Kitap ödünç almak için kontrolcü fonksiyonu
 export const borrowBookController = async (req: Request, res: Response) => {
     const { userId, bookId } = req.params;
     try {
@@ -16,7 +15,6 @@ export const borrowBookController = async (req: Request, res: Response) => {
     }
 };
 
-// Kitap geri getirilmesini işlemek için kontrolcü fonksiyonu
 export const returnBookController = async (req: Request, res: Response) => {
     const { userId, bookId } = req.params;
     const { returnedAt, score } = req.body;

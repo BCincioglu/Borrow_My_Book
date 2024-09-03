@@ -15,7 +15,6 @@ class Book extends Model<BookAttributes, BorrowCreationAttributes> implements Bo
     public score!: number;
 }
 
-// Model tanımı
 Book.init({
     id: {
         type: DataTypes.INTEGER,
@@ -28,7 +27,7 @@ Book.init({
     },
     score: {
         type: DataTypes.FLOAT,
-        defaultValue: -1, // Skor verilmemişse varsayılan -1
+        defaultValue: -1,
         allowNull: false,
     },
 }, {
