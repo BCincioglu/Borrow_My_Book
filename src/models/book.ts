@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/database';
-import Borrow from './borrow';
 
 interface BookAttributes {
     id: number;
@@ -35,6 +34,7 @@ Book.init({
 }, {
     sequelize,
     tableName: 'books',
+    timestamps: false,
 });
 
 export default Book;

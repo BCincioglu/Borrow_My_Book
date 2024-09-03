@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { getBooksService, getBookByIdService, createBookService} from '../services/bookService';
-import { bookSchema } from '../helpers/validator';
 
 export const getBooksController = async (req: Request, res: Response) => {
     try {
@@ -13,6 +12,7 @@ export const getBooksController = async (req: Request, res: Response) => {
 
 export const getBookByIdController = async (req: Request, res: Response) => {
     const { id } = req.params;
+    
     try {
         const book = await getBookByIdService(Number(id));
         res.json(book);
@@ -21,16 +21,11 @@ export const getBookByIdController = async (req: Request, res: Response) => {
     }
 };
 
-export const createBookControlller = async (req: Request, res: Response) => {
+export const createBookController = async (req: Request, res: Response) => {
+    const { name } = req.body;
+
     try {
-
-        const { error, value } = bookSchema.validate(req.body);
-        
-        if (error) {
-            return res.status(400).json({ error: error.details[0].message });
-        }
-
-        const book = await createBookService(value.name);
+        const book = await createBookService(name);
         res.status(201).json(book);
     } catch (error) {
         res.status(500).json({ error: error });

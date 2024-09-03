@@ -1,4 +1,5 @@
 import Borrow from '../models/borrow';
+import { Op } from 'sequelize';
 
 // Kitap ödünç almak için servis fonksiyonu
 export const borrowBook = async (userId: number, bookId: number) => {
@@ -10,20 +11,30 @@ export const borrowBook = async (userId: number, bookId: number) => {
     }
 };
 
-// Kitap geri getirilmesini işlemek için servis fonksiyonu
-export const returnBook = async (id: number, returnedAt?: Date, score?: number) => {
+export const returnBook = async (userId: number, bookId: number, returnedAt?: Date, score?: number) => {
     try {
-        // ID'ye göre Borrow kaydını buluyoruz
-        const borrow = await Borrow.findByPk(id);
+        // Kullanıcı ve kitap ID'sine göre ve `returnedAt` değeri null olan bir kayıt buluyoruz
+        const borrow = await Borrow.findOne({
+            where: {
+                userId,
+                bookId,
+                returnedAt: {
+                    [Op.is]: null
+                }
+            }
+        });
+
         if (!borrow) {
-            throw new Error('Borrow record not found');
+            throw new Error('Borrow record not found or book already returned');
         }
 
         // Kaydı güncelliyoruz
-        return await borrow.update({
-            returnedAt: returnedAt || new Date(), // Geri dönüş tarihi, belirlenmemişse mevcut tarihi kullan
+        await borrow.update({
+            returnedAt: returnedAt || new Date(), // Eğer `returnedAt` belirtilmemişse mevcut tarihi kullan
             score // Opsiyonel skor
         });
+
+        return borrow;
     } catch (error) {
         throw new Error(`Error returning book: ${error}`);
     }

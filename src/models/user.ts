@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/database';
-import Borrow from './borrow';
 
 interface UserAttributes {
     id: number;
@@ -13,9 +12,6 @@ interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
     public id!: number;
     public name!: string;
-
-    // İlişkiler
-    public readonly borrowedBooks?: Borrow[];
 }
 
 User.init({
@@ -31,6 +27,7 @@ User.init({
 }, {
     sequelize,
     tableName: 'users',
+    timestamps: false,
 });
 
 export default User;

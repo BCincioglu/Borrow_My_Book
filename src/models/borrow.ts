@@ -1,14 +1,15 @@
 // models/borrow.ts
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/database';
+import Book from './book'; // Ensure you import Book model
 
 interface BorrowAttributes {
     id: number;
     userId: number;
     bookId: number;
     borrowedAt: Date;
-    returnedAt?: Date;
-    score?: number;
+    returnedAt?: Date | null;
+    score?: number | null;
 }
 
 interface BorrowCreationAttributes extends Optional<BorrowAttributes, 'id' | 'borrowedAt' | 'returnedAt' | 'score'> {}
@@ -20,6 +21,9 @@ class Borrow extends Model<BorrowAttributes, BorrowCreationAttributes> implement
     public borrowedAt!: Date;
     public returnedAt?: Date;
     public score?: number;
+
+    // Book ilişkisini tanımlayın
+    public readonly Book?: Book;
 }
 
 Borrow.init({
@@ -51,6 +55,7 @@ Borrow.init({
     },
     returnedAt: {
         type: DataTypes.DATE,
+        allowNull: true,
     },
     score: {
         type: DataTypes.INTEGER,
@@ -58,6 +63,9 @@ Borrow.init({
 }, {
     sequelize,
     tableName: 'borrows',
+    timestamps: false,
 });
+
+Borrow.belongsTo(Book, { foreignKey: 'bookId', as: 'Book' });
 
 export default Borrow;
