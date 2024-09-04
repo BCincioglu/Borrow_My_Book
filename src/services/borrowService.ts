@@ -1,7 +1,7 @@
 import Borrow from '../models/borrow';
 import { Op } from 'sequelize';
 
-export const borrowBook = async (userId: number, bookId: number) => {
+export const borrowBookService = async (userId: number, bookId: number) => {
     try {
         return await Borrow.create({ userId, bookId });
     } catch (error) {
@@ -9,7 +9,7 @@ export const borrowBook = async (userId: number, bookId: number) => {
     }
 };
 
-export const returnBook = async (userId: number, bookId: number, returnedAt?: Date, score?: number) => {
+export const returnBookService = async (userId: number, bookId: number, returnedAt?: Date, score?: number) => {
     try {
         const borrow = await Borrow.findOne({
             where: {

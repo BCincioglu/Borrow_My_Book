@@ -3,7 +3,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
 import bookRoutes from './routes/bookRoutes';
-import borrowRoutes from './routes/borrowRoutes';
 import sequelize from './config/database';
 
 const app = express();
@@ -14,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/users', userRoutes);
 app.use('/api/books', bookRoutes);
-app.use('/api/borrows', borrowRoutes);
 
 const PORT = process.env.PORT || 3000;
 

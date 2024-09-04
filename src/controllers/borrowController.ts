@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { borrowBook, returnBook } from '../services/borrowService';
+import { borrowBookService, returnBookService } from '../services/borrowService';
 
 export const borrowBookController = async (req: Request, res: Response) => {
     const { userId, bookId } = req.params;
     try {
-        const borrow = await borrowBook(Number(userId), Number(bookId));
+        const borrow = await borrowBookService(Number(userId), Number(bookId));
         res.status(201).json(borrow);
     } catch (error: any) {
         if (error instanceof Error) {
@@ -20,7 +20,7 @@ export const returnBookController = async (req: Request, res: Response) => {
     const { returnedAt, score } = req.body;
 
     try {
-        const borrow = await returnBook(Number(userId), Number(bookId), returnedAt, score);
+        const borrow = await returnBookService(Number(userId), Number(bookId), returnedAt, score);
         res.status(200).json(borrow);
     } catch (error: any) {
         if (error instanceof Error) {

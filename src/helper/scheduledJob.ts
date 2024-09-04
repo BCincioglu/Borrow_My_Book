@@ -1,9 +1,10 @@
 import cron from 'node-cron';
-import { calculateBookAverageScores } from '../services/bookAverageScoresService';
+import { calculateBookAverageScoreService } from '../services/bookAverageScoresService';
 
+// Calculate Scores Every Day
 cron.schedule('0 0 * * *', () => {
     try {
-    calculateBookAverageScores();
+    calculateBookAverageScoreService();
     } catch (error) {
         throw new Error("An error occurred while calculating scores.");
     }

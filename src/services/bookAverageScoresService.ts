@@ -2,7 +2,7 @@ import { Op, Sequelize } from 'sequelize';
 import Borrow from '../models/borrow';
 import Book from '../models/book';
 
-export const calculateBookAverageScores = async () => {
+export const calculateBookAverageScoreService = async () => {
     try {
 
         // Calculate Score
